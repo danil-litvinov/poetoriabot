@@ -25,7 +25,8 @@ class DatabaseMiddleware(BaseMiddleware):
                 event.from_user.language_code,
                 event.date,
                 event.date,
-                event.from_user.username
+                event.from_user.username,
+                #event.contact.phone_number
             )
 
             data["session"] = session

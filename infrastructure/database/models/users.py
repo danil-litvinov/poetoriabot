@@ -8,7 +8,7 @@ from sqlalchemy.orm import mapped_column
 from .base import Base, TimestampMixin, TableNameMixin
 
 
-class Users(Base, TimestampMixin, TableNameMixin):
+class Users(Base, TableNameMixin):
     """
     This class represents a User in the application.
     If you want to learn more about SQLAlchemy and Alembic, you can check out the following link to my course:
@@ -38,6 +38,7 @@ class Users(Base, TimestampMixin, TableNameMixin):
     language: Mapped[str] = mapped_column(String(10), server_default=text("'en'"))
     reg_date: Mapped[int] = mapped_column(DATE)
     upd_date: Mapped[int] = mapped_column(DATE)
+    phone: Mapped[int] = mapped_column(String(128))
 
     def __repr__(self):
         return f"<User {self.user_id} {self.username} {self.full_name}>"

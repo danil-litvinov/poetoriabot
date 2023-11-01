@@ -15,6 +15,7 @@ class UserRepo(BaseRepo):
         reg_date: int,
         upd_date: int,
         username: Optional[str] = None,
+        phone: Optional[str] = None,
     ):
         """
         Creates or updates a new user in the database and returns the user object.
@@ -33,7 +34,8 @@ class UserRepo(BaseRepo):
                 full_name=full_name,
                 language=language,
                 reg_date=reg_date,
-                upd_date=upd_date
+                upd_date=upd_date,
+                phone=phone,
             )
             .on_conflict_do_update(
                 index_elements=[Users.user_id],
@@ -41,6 +43,7 @@ class UserRepo(BaseRepo):
                     username=username,
                     full_name=full_name,
                     upd_date=upd_date,
+                    phone=phone,
                 ),
             )
             .returning(Users)

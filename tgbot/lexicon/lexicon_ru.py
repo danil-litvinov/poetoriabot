@@ -4,7 +4,7 @@ from tgbot.config import load_config, Config
 from infrastructure.database.setup import create_engine
 from infrastructure.database.setup import create_session_pool
 from infrastructure.database.repo.lexicon_ru import LexiconRepo
-from infrastructure.database.models import Lexicon_ru, Lexicon_Menu, Lexicon_KB
+from infrastructure.database.models import Lexicon_ru, Lexicon_Menu, Lexicon_KB, Lexicon_Admin
 from sqlalchemy import select
 
 
@@ -53,8 +53,10 @@ async def initialize_lexicon_dict(target_dict, lexicon_model=Lexicon_ru):
 lexicon_ru_dict:dict[str, str] = {}
 lexicon_main_menu_ru:dict[str, str] = {}
 lexicon_reply_kb:dict[str, str] = {}
+lexicon_admin:dict[str, str] = {}
 
 # Вызовите функцию для инициализации словаря при импорте модуля
 asyncio.run(initialize_lexicon_dict(lexicon_ru_dict))
 asyncio.run(initialize_lexicon_dict(lexicon_main_menu_ru, Lexicon_Menu))
 asyncio.run(initialize_lexicon_dict(lexicon_reply_kb, Lexicon_KB))
+asyncio.run(initialize_lexicon_dict(lexicon_reply_kb, Lexicon_Admin))

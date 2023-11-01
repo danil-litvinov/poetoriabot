@@ -17,7 +17,7 @@ async def update_lexicon_command(message: Message):
     await initialize_lexicon_dict(lexicon_ru_dict)
     await initialize_lexicon_dict(lexicon_main_menu_ru)
     await initialize_lexicon_dict(lexicon_reply_kb)
-    await initialize_lexicon_dict(lexicon_reply_kb)
+    await initialize_lexicon_dict(lexicon_admin)
     try:
         await message.reply(text=lexicon_admin['update_dict'])
     except Exception as e:

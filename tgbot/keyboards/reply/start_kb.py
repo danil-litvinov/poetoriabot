@@ -40,7 +40,7 @@ def create_reply_kb(width: int,
 
     # Возвращаем объект инлайн-клавиатуры
     return kb_builder.as_markup(
-        one_time_keyboard=True,
+        #one_time_keyboard=True,
         resize_keyboard=True)
 
 

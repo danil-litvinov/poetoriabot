@@ -59,4 +59,4 @@ lexicon_admin:dict[str, str] = {}
 asyncio.run(initialize_lexicon_dict(lexicon_ru_dict))
 asyncio.run(initialize_lexicon_dict(lexicon_main_menu_ru, Lexicon_Menu))
 asyncio.run(initialize_lexicon_dict(lexicon_reply_kb, Lexicon_KB))
-asyncio.run(initialize_lexicon_dict(lexicon_reply_kb, Lexicon_Admin))
+asyncio.run(initialize_lexicon_dict(lexicon_admin, Lexicon_Admin))

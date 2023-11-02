@@ -1,9 +1,7 @@
-from aiogram import Router, F
-from aiogram.filters import CommandStart
+from aiogram import Router
 from aiogram.types import Message
 
 from tgbot.lexicon.lexicon_ru import lexicon_ru_dict
-from tgbot.keyboards.reply.start_kb import create_reply_kb
 
 router = Router()
 

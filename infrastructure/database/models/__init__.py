@@ -1,3 +1,3 @@
 from .base import Base
 from .users import Users
-from .lexicon_ru import Lexicon_ru, Lexicon_Menu, Lexicon_KB, Lexicon_Admin
+from .lexicon_ru import Lexicon_ru, Lexicon_KB, Lexicon_Admin

@@ -6,16 +6,14 @@ from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.fsm.storage.redis import RedisStorage, DefaultKeyBuilder
 
-from tgbot.config import load_config, Config, DbConfig
+from tgbot.config import load_config, Config
 from tgbot.middlewares.config import ConfigMiddleware
 from tgbot.middlewares.database import DatabaseMiddleware
 from tgbot.handlers import routers_list
 from tgbot.services import broadcaster
 from infrastructure.database.setup import create_engine
 from infrastructure.database.setup import create_session_pool
-from tgbot.keyboards.main_menu import set_main_menu
 
-from infrastructure.database.repo.lexicon_ru import LexiconRepo
 
 
 async def on_startup(bot: Bot, admin_ids: list[int]):
@@ -111,7 +109,7 @@ async def main():
     bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
     dp = Dispatcher(storage=storage)
 
-    await set_main_menu(bot)
+    #await set_main_menu(bot)
 
     dp.include_routers(*routers_list)
 

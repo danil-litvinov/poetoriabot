@@ -1,12 +1,10 @@
-import asyncio
-
-from aiogram import Router, F, types
-from aiogram.filters import CommandStart, Command
+from aiogram import Router, F
+from aiogram.filters import Command
 from aiogram.types import Message
 
 from tgbot.filters.admin import AdminFilter
-from tgbot.lexicon.lexicon_ru import LEXICON_ERR, lexicon_ru_dict, lexicon_main_menu_ru, lexicon_reply_kb, lexicon_admin, initialize_lexicon_dict
-from infrastructure.database.models import Lexicon_ru, Lexicon_Menu, Lexicon_KB, Lexicon_Admin
+from tgbot.lexicon.lexicon_ru import lexicon_ru_dict, lexicon_reply_kb, lexicon_admin, initialize_lexicon_dict
+from infrastructure.database.models import Lexicon_ru, Lexicon_KB, Lexicon_Admin
 
 admin_router = Router()
 admin_router.message.filter(AdminFilter())
@@ -14,10 +12,9 @@ admin_router.message.filter(AdminFilter())
 
 @admin_router.message(Command(commands='update_dict'))
 async def update_lexicon_command(message: Message):
-    await initialize_lexicon_dict(lexicon_ru_dict)
-    await initialize_lexicon_dict(lexicon_main_menu_ru)
-    await initialize_lexicon_dict(lexicon_reply_kb)
-    await initialize_lexicon_dict(lexicon_admin)
+    await initialize_lexicon_dict(lexicon_ru_dict, Lexicon_ru)
+    await initialize_lexicon_dict(lexicon_reply_kb, Lexicon_KB)
+    await initialize_lexicon_dict(lexicon_admin, Lexicon_Admin)
     try:
         await message.reply(text=lexicon_admin['update_dict'])
     except Exception as e:

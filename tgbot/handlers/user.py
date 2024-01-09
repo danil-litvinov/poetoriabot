@@ -29,7 +29,7 @@ async def process_donate_answer(message: Message):
 
 @user_router.message(F.text == lexicon_reply_kb['back'])
 async def process_back_answer(message):
-    keyboard=create_reply_kb(1, 'contact_us', 'donate', 'events')
+    keyboard=create_reply_kb(1, 'contact_us', 'donate')
     await message.answer(text=lexicon_ru_dict['/start'], reply_markup=keyboard)
 
 '''@user_router.message(F.text == lexicon_reply_kb['events'])

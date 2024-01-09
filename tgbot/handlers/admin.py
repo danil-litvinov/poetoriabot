@@ -25,7 +25,7 @@ async def update_lexicon_command(message: Message):
 
 @admin_router.message(CommandStart())
 async def user_start(message: Message):
-    await message.answer(text=lexicon_ru_dict['/start'], reply_markup=create_reply_kb(1, 'contact_us', 'donate', 'events'))
+    await message.answer(text=lexicon_ru_dict['/start'], reply_markup=create_reply_kb(1, 'events', 'contact_us', 'donate'))
 
 @admin_router.message(F.text == lexicon_reply_kb['events'])
 @admin_router.callback_query(F.data == 'last_btn')
@@ -41,7 +41,7 @@ async def process_events(message: Message):
 @admin_router.message(F.text == lexicon_reply_kb['back'] or F.data == 'back')
 @admin_router.callback_query(F.data == 'back')
 async def process_back_answer(message):
-    keyboard=create_reply_kb(1, 'contact_us', 'donate', 'events')
+    keyboard=create_reply_kb(1, 'events', 'contact_us', 'donate')
     if isinstance(message, Message):
         await message.answer(text=lexicon_ru_dict['/start'], reply_markup=keyboard)
     elif isinstance(message, CallbackQuery):

@@ -17,7 +17,7 @@ from infrastructure.database.setup import create_session_pool
 
 
 async def on_startup(bot: Bot, admin_ids: list[int]):
-    await broadcaster.broadcast(bot, admin_ids, "Бот запущен /start")
+    await broadcaster.broadcast(bot, admin_ids, f"Бот был перезапущен.\nВозможно, добавлены новые функции, для проверки используй команду /start или /update_dict.\n\nВесь тестовый функционал помечен «[test]» — его видят только администраторы.\n\nТы видишь это сообщение, так как являешься администратором бота.")
 
 
 def register_global_middlewares(dp: Dispatcher, config: Config):

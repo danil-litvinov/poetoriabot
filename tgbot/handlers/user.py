@@ -27,6 +27,11 @@ async def process_donate_answer(message: Message):
 async def process_donate_answer(message: Message):
     await message.answer(text=lexicon_ru_dict['contact_us'], reply_markup=create_reply_kb(1, 'back'))
 
+@user_router.message(F.text == lexicon_reply_kb['back'])
+async def process_back_answer(message):
+    keyboard=create_reply_kb(1, 'contact_us', 'donate', 'events')
+    await message.answer(text=lexicon_ru_dict['/start'], reply_markup=keyboard)
+
 '''@user_router.message(F.text == lexicon_reply_kb['events'])
 @user_router.callback_query(F.data == 'last_btn')
 async def process_events(message: Message):

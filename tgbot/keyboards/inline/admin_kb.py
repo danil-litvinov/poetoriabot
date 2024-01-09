@@ -4,7 +4,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from tgbot.lexicon.lexicon_ru import LEXICON_RU
 
 def add_admin_button(keyboard: InlineKeyboardMarkup,
-                     width: int,
+                    width: int,
                      *args: str) -> InlineKeyboardMarkup:
     # Инициализируем билдер
     kb = keyboard

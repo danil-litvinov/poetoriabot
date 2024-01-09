@@ -1,10 +1,10 @@
-import asyncio
+import asyncio, json
 
 from tgbot.config import load_config
 from infrastructure.database.setup import create_engine
 from infrastructure.database.setup import create_session_pool
 from infrastructure.database.repo.lexicon_ru import LexiconRepo
-from infrastructure.database.models import Lexicon_ru, Lexicon_KB, Lexicon_Admin
+from infrastructure.database.models import Lexicon_Ru, Lexicon_KB, Lexicon_Admin
 
 
 
@@ -41,6 +41,47 @@ LEXICON_ERR: dict[str, str] = {
     '': '',
 }
 
+EVENTS = {
+}
+
+with open('events.json', 'r', encoding='utf-8') as f:
+        file_contents = f.read()
+        events = json.loads(file_contents)
+        EVENTS = events        
+
+"""
+EVENTS = {
+    'event_1': {
+        'event_name': 'Мероприятие 1',
+        'event_desc': 'Описание мероприятия 1',
+        'event_date': '21.11.2023',
+        'event_url': 'https://vk.com',
+        'event_photo': ['AgACAgIAAxkBAAILTWWdasB0NjlpQ0NHxc2ttcOAXU5wAALY0zEb4YjpSCpRr01zt-1JAQADAgADeQADNAQ', 'AgACAgIAAxkBAAILUGWdasDqUY9fXKSS2tJiS96ynOXtAALd0zEb4YjpSOuuPolRlRxlAQADAgADeQADNAQ', 'AgACAgIAAxkBAAILUWWdasBjEe6r7bOClDu6-wPdVqHyAALe0zEb4YjpSOHCemNb3AAB6gEAAwIAA3kAAzQE', 'AgACAgIAAxkBAAILTmWdasBwFP2FRW5o0RHj5tDpNeZMAALZ0zEb4YjpSGTyDHbj3o0DAQADAgADeQADNAQ', 'AgACAgIAAxkBAAILT2WdasA58230iUh-99J_tJmhTJ24AALa0zEb4YjpSHC1W4rJ7GaAAQADAgADeQADNAQ']
+    },
+    'event_2': {
+        'event_name': 'Мероприятие 2',
+        'event_desc': 'Описание мероприятия 2',
+        'event_date': '16.12.2024',
+        'event_url': 'https://vk.com',
+        'event_photo': ['AgACAgIAAxkBAAILUGWdasDqUY9fXKSS2tJiS96ynOXtAALd0zEb4YjpSOuuPolRlRxlAQADAgADeQADNAQ', 'AgACAgIAAxkBAAILTWWdasB0NjlpQ0NHxc2ttcOAXU5wAALY0zEb4YjpSCpRr01zt-1JAQADAgADeQADNAQ', 'AgACAgIAAxkBAAILUWWdasBjEe6r7bOClDu6-wPdVqHyAALe0zEb4YjpSOHCemNb3AAB6gEAAwIAA3kAAzQE', 'AgACAgIAAxkBAAILTmWdasBwFP2FRW5o0RHj5tDpNeZMAALZ0zEb4YjpSGTyDHbj3o0DAQADAgADeQADNAQ', 'AgACAgIAAxkBAAILT2WdasA58230iUh-99J_tJmhTJ24AALa0zEb4YjpSHC1W4rJ7GaAAQADAgADeQADNAQ']
+    },
+    'event_3': {
+        'event_name': 'Мероприятие 3',
+        'event_desc': 'Описание мероприятия 3',
+        'event_date': '29.12.2024',
+        'event_url': 'https://vk.com',
+        'event_photo': ['AgACAgIAAxkBAAILTmWdasBwFP2FRW5o0RHj5tDpNeZMAALZ0zEb4YjpSGTyDHbj3o0DAQADAgADeQADNAQ', 'AgACAgIAAxkBAAILT2WdasA58230iUh-99J_tJmhTJ24AALa0zEb4YjpSHC1W4rJ7GaAAQADAgADeQADNAQ']
+    },
+    'event_4': {
+        'event_name': 'Мероприятие 4',
+        'event_desc': 'Описание мероприятия 4',
+        'event_date': '31.12.2024',
+        'event_url': 'https://vk.com',
+        'event_photo': ['AgACAgIAAxkBAAILT2WdasA58230iUh-99J_tJmhTJ24AALa0zEb4YjpSHC1W4rJ7GaAAQADAgADeQADNAQ']
+    }
+}"""
+
+
 # Создайте функцию для инициализации словаря (эту функцию можно вызвать один раз)
 async def initialize_lexicon_dict(target_dict, lexicon_model):
     config = load_config(".env")
@@ -54,6 +95,6 @@ lexicon_reply_kb:dict[str, str] = {}
 lexicon_admin:dict[str, str] = {}
 
 # Вызовите функцию для инициализации словаря при импорте модуля
-asyncio.run(initialize_lexicon_dict(lexicon_ru_dict, Lexicon_ru))
+asyncio.run(initialize_lexicon_dict(lexicon_ru_dict, Lexicon_Ru))
 asyncio.run(initialize_lexicon_dict(lexicon_reply_kb, Lexicon_KB))
 asyncio.run(initialize_lexicon_dict(lexicon_admin, Lexicon_Admin))

@@ -5,7 +5,7 @@ from tgbot.lexicon.lexicon_ru import lexicon_reply_kb
 
 
 def create_reply_kb(width: int,
-                     *args: str) -> ReplyKeyboardMarkup:
+                    *args: str) -> ReplyKeyboardMarkup:
     # Инициализируем билдер
     kb_builder = ReplyKeyboardBuilder()
 

@@ -1,7 +1,8 @@
 from typing import Callable, Dict, Any, Awaitable
+from datetime import datetime
 
 from aiogram import BaseMiddleware
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 
 from infrastructure.database.repo.requests import RequestsRepo
 
@@ -19,12 +20,14 @@ class DatabaseMiddleware(BaseMiddleware):
         async with self.session_pool() as session:
             repo = RequestsRepo(session)
 
-            user = await repo.users.get_or_create_user(
+            current_time = datetime.now()
+
+            user = await repo.users.get_or_create_user( 
                 event.from_user.id,
                 event.from_user.full_name,
                 event.from_user.language_code,
-                event.date,
-                event.date,
+                current_time,
+                current_time,
                 event.from_user.username,
                 #event.contact.phone_number
             )

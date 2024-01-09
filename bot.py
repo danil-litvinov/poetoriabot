@@ -109,26 +109,9 @@ async def main():
     bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
     dp = Dispatcher(storage=storage)
 
-    #await set_main_menu(bot)
-
     dp.include_routers(*routers_list)
 
     register_global_middlewares(dp, config)
-
-    '''session_factory = create_session_pool(create_engine(config.db))  # Создать session_factory
-
-    # Создайте экземпляр LexiconRepo и передайте session_factory
-    lexicon_repo = LexiconRepo(session_factory)
-
-    # Вызовите метод read_lexicon_table на экземпляре класса
-    await lexicon_repo.read_lexicon_table()
-
-    # Получите словарь lexicon_dict
-    lexicon_dict = lexicon_repo.lexicon_dict
-
-    # Выведите словарь на печать
-    for key, value in lexicon_dict.items():
-        print(f"Ключ: {key}, Значение: {value}")'''
 
     await on_startup(bot, config.tg_bot.admin_ids)
     await dp.start_polling(bot)

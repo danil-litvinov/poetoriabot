@@ -63,7 +63,7 @@ def create_events_kb(width: int,
     for key in args:
         if key in EVENTS:
             buttons.append(InlineKeyboardButton(
-                text=f"({EVENTS[key]['event_date']}) {EVENTS[key]['event_name']}",
+                text=f"{EVENTS[key]['event_date']} {EVENTS[key]['event_name']}",
                 callback_data=key
             ))
 
